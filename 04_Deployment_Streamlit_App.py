@@ -11,9 +11,11 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img
 #import image 
 from tensorflow.keras.preprocessing.image import img_to_array
+import pickle
 
 
-cnn_model = joblib.load("cnn_model.pkl")
+cnn_model = pickle.load(open("cnn_model.pkl", 'rb'))
+#cnn_model = joblib.load("cnn_model.pkl")
 
 # Designing the interface
 st.title("Motor Accident Classification App")

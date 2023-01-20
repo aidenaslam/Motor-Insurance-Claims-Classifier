@@ -7,6 +7,7 @@ I scraped over 1000 images relating to different types of vehicle damage:
   * Dent
   * Scratch
   * Broken light (front or back)
+  * Broken windscreen (front or rear)
   * Significant damage
   * No apparent damage
   
@@ -22,7 +23,7 @@ I scraped over 1000 images relating to different types of vehicle damage:
   * Exclude the fully connected layer at the top of the network
   * Freeze the model layers so no information is destroyed when training the model using the images scraped
   * New trainable layers added on top of the frozen layer in order to be able to classify vehicle damage. In this case a global average pooling layer and
-  dense layer with a softmax activation were used with the number of units set to 5 to represent the 5 different outputs possible for vehicle damage.
+  dense layer with a softmax activation were used with the number of units set to 6 to represent the 6 different outputs possible for vehicle damage.
   * The final step was to train the model using my dataset of over 1000 images relating to vehicle damage.
   
   The following hyperparameters were chosen:

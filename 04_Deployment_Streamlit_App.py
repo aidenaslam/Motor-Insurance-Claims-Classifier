@@ -23,9 +23,16 @@ st.title("Motor Accident Classification App")
 st.write('\n')
 
 # Description of App
-st.write('This app allows the user to upload an image of their vehicle if it has sustained any damage, and then classify they type of damage the car has sustained.')
+st.write('This app allows the user to upload an image of their vehicle if it has sustained any damage, and then classify the type of damage it has sustained.')
+st.write('It can currently classify the following types of damage:')
+st.write("- Dents")
+st.write("- Scratches")
+st.write("- Broken lights (front or rear)")
+st.write("- Broken windows")
+st.write("- Significant damage (for example a write-off)")
 st.write('\n')
-st.write("1) First Upload an image and wait for the image to load on the interface")
+st.write("Instructions to use the app:")
+st.write("1) First upload an image and wait for the image to load on the interface")
 st.write("2) Click the classify button and wait for the model to predict the type of damage the car has sustained.")
 
 # Front Page Image
@@ -84,7 +91,7 @@ if st.sidebar.button("Click Here to Classify"):
             st.success('Done!')
             st.balloons()
             
-        st.sidebar.header("Algorithm Predicts: ")
+        st.sidebar.header("CNN Predicts: ")
         
         ## Classify type of damage
         for idx, x in enumerate(test_proba_rounded):

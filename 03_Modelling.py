@@ -92,6 +92,7 @@ plt.gca().set_ylim(0,3)
 plt.savefig('model_training.png')
 
 # Save model
-joblib.dump(history, "cnn_model.pkl")
+#joblib.dump(history, "cnn_model.pkl")
+model.save('cnn_model.h5')
 
 

@@ -13,8 +13,8 @@ from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.preprocessing.image import img_to_array
 import pickle
 
-
-cnn_model = pickle.load(open("cnn_model.pkl", 'rb'))
+cnn_model = tf.keras.models.load_model('cnn_model.h5')
+#cnn_model = pickle.load(open("cnn_model.pkl", 'rb'))
 #cnn_model = joblib.load("cnn_model.pkl")
 
 # Designing the interface
@@ -71,7 +71,7 @@ if st.sidebar.button("Click Here to Classify"):
         with st.spinner('Classifying ...'):      
             
             # Return predictions as ndarray int
-            test_proba = cnn_model.model.predict(my_image)            
+            test_proba = cnn_model.predict(my_image)            
             test_proba = test_proba.tolist()
             
             # flatten nested list

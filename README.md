@@ -41,8 +41,7 @@ I scraped over 1000 images relating to different types of vehicle damage:
   
   ## Deployment
   
-  * Using Streamlit, a web app was produced and deployed to the streamlit cloud where a user can upload an image and the CNN classifier model constructed would be able to classify the type of damage sustained to the vehicle. This was first developed locally, before being deployed in Microsot Azure using App Services. Below is a screenshot showing an image of a car that has sustained damage with the output from the CNN classifier model underlined in blue. The model correctly classifies the damage as a dent with 
-  probability 1.0.
+  * Using Streamlit, a web app was produced and deployed to the streamlit cloud where a user can upload an image and the CNN classifier model constructed would be able to classify the type of damage sustained to the vehicle. Below is a screenshot showing an image of a car that has sustained damage with the output from the CNN classifier model. The model correctly classifies the damage as a dent with probability 0.976.
     
   <img src="https://github.com/aidenaslam/Motor-Insurance-Claims-Classifier/blob/dev_aiden/Streamlit_app_screenshot.png" width="800" height="500" />
   

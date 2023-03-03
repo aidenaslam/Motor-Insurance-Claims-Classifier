@@ -5,7 +5,6 @@ log_dir = "logs"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
-
 # Bing Search V7 subscription key and endpoint
 subscription_key = "ff261e80f649468dab61f5f938238407"
 endpoint = 'https://api.bing.microsoft.com/v7.0/images/search'
@@ -14,7 +13,6 @@ endpoint = 'https://api.bing.microsoft.com/v7.0/images/search'
 saved_images = os.path.join(os.getcwd(), "01_Image_Scrape", "Data")
 if not os.path.exists(saved_images):
     os.makedirs(saved_images) 
-
 
 # where to save preprocessed images
 preprocessed_images = os.path.join(os.getcwd(), "02_Processed_Images")

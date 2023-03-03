@@ -1,8 +1,10 @@
 # Import Libraries to Scrape Images Using Bing
 import requests
 import shutil
-
 from parameters import endpoint, subscription_key, saved_images
+from logging_module import get_file_stream_logger
+
+logger_ = get_file_stream_logger("Creating the report handler")
 
 # list to save image URLs and image file names. 
 images = []
@@ -18,9 +20,11 @@ headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 
 # Call the API
 try:
+    logger_.info(f"Calling API for query: {query}")
     response = requests.get(endpoint, headers=headers, params=params)
     response.raise_for_status()
 except Exception as ex:
+    logger_.error(f"API Call for query: {query} failed")
     raise ex
 
 # Convert response to json

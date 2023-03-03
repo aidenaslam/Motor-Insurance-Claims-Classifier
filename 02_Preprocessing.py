@@ -4,6 +4,11 @@ from os.path import isfile, join
 import os
 from parameters import saved_images, preprocessed_images
 from functions import preprocess_image
+from logging_module import get_file_stream_logger
+
+logger_ = get_file_stream_logger("Creating the report handler")
+
+logger_.info(f"Preprocessing Images")
 
 # Create a list of the classes
 class_list = ["Class_0", "Class_1", "Class_2", "Class_3", "Class_4", "Class_5"]
@@ -31,3 +36,5 @@ for c in images_in_folder.keys():
 # Save pre-processed data for modelling
 for c in images_in_folder.keys():
     images_for_each_class[c].dump(f"{preprocessed_images}\data_{c}.npy")
+
+logger_.info(f"Completed Pre-processing of images")

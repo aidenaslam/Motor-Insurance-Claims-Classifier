@@ -6,11 +6,14 @@ from tensorflow.keras.applications.xception import Xception
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
-
 from parameters import (preprocessed_images, class_0, class_1, class_2, 
                         class_3, class_4, class_5, model_dir)
 from functions import process_image_data
+from logging_module import get_file_stream_logger
 
+logger_ = get_file_stream_logger("Creating the report handler")
+
+logger_.info(f"Processing Image Data for Modelling")
 
 # Load image data for each class
 data_class_0_reshaped = process_image_data(preprocessed_images, class_0)
@@ -73,6 +76,7 @@ for layer in base_model.layers:
 optimiser = tf.keras.optimizers.legacy.SGD(learning_rate=0.2, momentum=0.9, decay= 0.01)
 model.compile(loss="SparseCategoricalCrossentropy", optimizer = optimiser, metrics =["accuracy"])
 
+logger_.info(f"Fitting Model")
 history = model.fit(data_combined_normalised,
                     data_labels_combined.reshape(1569,1),
                     epochs = 5)
@@ -85,5 +89,6 @@ plt.savefig('model_training.png')
 
 # Save model
 model.save(f'{model_dir}\cnn_model.h5')
+logger_.info(f"Model Saved Successfully")
 
 

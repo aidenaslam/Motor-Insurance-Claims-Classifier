@@ -1,5 +1,4 @@
 import streamlit as st
-import joblib
 from PIL import Image
 import numpy as np
 import time
@@ -9,13 +8,10 @@ from os import listdir
 from os.path import isfile, join
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img
-#import image 
 from tensorflow.keras.preprocessing.image import img_to_array
-import pickle
+
 
 cnn_model = tf.keras.models.load_model('cnn_model.h5')
-#cnn_model = pickle.load(open("cnn_model.pkl", 'rb'))
-#cnn_model = joblib.load("cnn_model.pkl")
 
 # Designing the interface
 st.title("Motor Accident Classification App")
@@ -41,17 +37,17 @@ show = st.image(image, use_column_width=True)
 
 st.sidebar.title("Upload Image")
 
-#Disabling warning
+# Disabling warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
-#Choose your own image
+
+# Ask user to upload image
 uploaded_file = st.sidebar.file_uploader(" ",type=['png', 'jpg', 'jpeg'] )
 
 if uploaded_file is not None:
     
     u_img = Image.open(uploaded_file)
     show.image(u_img, 'Uploaded Image', use_column_width=True)
-    # We preprocess the image to fit in algorithm.
-    
+        
     # convert to numpy array
     image = img_to_array(u_img)
     
@@ -68,13 +64,9 @@ if uploaded_file is not None:
 st.sidebar.write('\n')
     
 if st.sidebar.button("Click Here to Classify"):
-    
     if uploaded_file is None:
-        
         st.sidebar.write("Please upload an Image to Classify")
-    
     else:
-        
         with st.spinner('Classifying ...'):      
             
             # Return predictions as ndarray int

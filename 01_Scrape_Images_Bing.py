@@ -1,13 +1,8 @@
 # Import Libraries to Scrape Images Using Bing
-import json
-import os 
-from pprint import pprint
 import requests
 import shutil
-import time
-import os
 
-from parameters import endpoint, subscription_key
+from parameters import endpoint, subscription_key, saved_images
 
 # list to save image URLs and image file names. 
 images = []
@@ -40,13 +35,12 @@ for i in range(0, len(response_JSON['value'])):
     image_name.append(response_JSON['value'][i]["imageId"])
 
 # Save images to Data folder
-dir_name = os.path.join(os.getcwd(), "01_Image_Scrape")
 headers = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
 for image, name in zip(images, image_name):
     try:
         r = requests.get(image, stream=True, headers=headers)
         if r.status_code == 200:
-            with open(f'{dir_name}{name}.png', 'wb') as f:
+            with open(f'{saved_images}{name}.png', 'wb') as f:
                 r.raw.decode_content = True
                 shutil.copyfileobj(r.raw,f)
     except:

@@ -1,34 +1,24 @@
-# This script creates and saves a CNN Classifier
-
 import numpy as np
-from os import listdir
+import os
 from tensorflow.keras.preprocessing.image import load_img
 import tensorflow as tf
 from tensorflow.keras.applications.xception import Xception
 import tensorflow as tf
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import joblib
+
+from parameters import (preprocessed_images, class_0, class_1, class_2, 
+                        class_3, class_4, class_5, model_dir)
+from functions import process_image_data
+
 
 # Load image data for each class
-data_class_0 = np.load('data_class_0.npy', allow_pickle=True)
-data_class_1 = np.load('data_class_1.npy', allow_pickle=True)
-data_class_2 = np.load('data_class_2.npy', allow_pickle=True)
-data_class_3 = np.load('data_class_3.npy', allow_pickle=True)
-data_class_4 = np.load('data_class_4.npy', allow_pickle=True)
-data_class_5 = np.load('data_class_5.npy', allow_pickle=True)
-
-# Re-shape data
-data_class_0_reshaped = tf.image.resize(data_class_0,[224,224])
-data_class_1_reshaped = tf.image.resize(data_class_1,[224,224])
-data_class_2_reshaped = tf.image.resize(data_class_2,[224,224])
-data_class_3_reshaped = tf.image.resize(data_class_3,[224,224])
-data_class_4_reshaped = tf.image.resize(data_class_4,[224,224])
-data_class_5_reshaped = tf.image.resize(data_class_5,[224,224])
-
-# free-up memory
-del data_class_0, data_class_1, data_class_2, data_class_3, data_class_4, data_class_5
+data_class_0_reshaped = process_image_data(preprocessed_images, class_0)
+data_class_1_reshaped = process_image_data(preprocessed_images, class_1)
+data_class_2_reshaped = process_image_data(preprocessed_images, class_2)
+data_class_3_reshaped = process_image_data(preprocessed_images, class_3)
+data_class_4_reshaped = process_image_data(preprocessed_images, class_4)
+data_class_5_reshaped = process_image_data(preprocessed_images, class_5)
 
 # Create Data Dictionary
 data_dict = {
@@ -63,6 +53,7 @@ data_labels_combined = np.concatenate((data_labels_combined, data_dict['label'][
 # Free memory
 del data_class_0_reshaped, data_class_1_reshaped, data_class_2_reshaped, data_class_3_reshaped, data_class_4_reshaped, data_class_5_reshaped
 
+# Normalise images
 data_combined_normalised = data_combined / 255
 
 # Transfer Learning
@@ -92,7 +83,6 @@ plt.gca().set_ylim(0,3)
 plt.savefig('model_training.png')
 
 # Save model
-#joblib.dump(history, "cnn_model.pkl")
-model.save('cnn_model.h5')
+model.save(f'{model_dir}\cnn_model.h5')
 
 

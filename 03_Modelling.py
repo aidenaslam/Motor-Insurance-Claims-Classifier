@@ -51,7 +51,8 @@ data_labels_combined = np.concatenate((data_labels_combined, data_dict['label'][
 data_labels_combined = np.concatenate((data_labels_combined, data_dict['label'][5]), axis = 1)
 
 # Free memory
-del data_class_0_reshaped, data_class_1_reshaped, data_class_2_reshaped, data_class_3_reshaped, data_class_4_reshaped, data_class_5_reshaped
+del (data_class_0_reshaped, data_class_1_reshaped, data_class_2_reshaped, 
+     data_class_3_reshaped, data_class_4_reshaped, data_class_5_reshaped)
 
 # Normalise images
 data_combined_normalised = data_combined / 255
